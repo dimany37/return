@@ -13,7 +13,7 @@
     <body>
         <form method="post" action="{{ route('upload_file') }}" enctype="multipart/form-data">
              @csrf
-            <label>Наименование продукта</label><input type="text" name="name"><br>
+            <label>Наименование продукта</label><winput type="text" name="name"><br>
             <label>ОПисание</label><input type="text" name="description"><br>
             <label>Цена</label><input type="text"name="price" ><br>
             <input name="_token" type="hidden" value="{{ csrf_token() }}">
