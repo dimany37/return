@@ -65,8 +65,9 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+                        @if (Route::has('login'))
                 <div class="top-right links">
+                    <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
@@ -84,16 +85,32 @@
                     Return1
                 </div>
 <div>
-                    @if(isset($product)) {{$product[4]}}@endif
+    @if(isset($products))
+        @foreach($products as $product)
+            <table border="1">
+                <tr>
+                    <td>Наименование: <span>{{$product->name}}</td>
+                    <td>Цена: <span>{{$product->price}}</span></td>
+
+            <p>Наименование: <span>{{$product->name}}</span></p>
+            <p>Цена: <span>{{$product->price}}</span>
+            @foreach($product->images as $image)
+                        <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="200" height="200" ></a></td>
+                <td>
+                    <form action="{{ route('checkout')  }}" method="post">
+                        @csrf
+                        <input type="hidden" value="{{$product->id}}" name="product">
+                        <button type="submit" >Купить</button>
+                    </form></td>
+                </tr>
+                </table>
+            @endforeach
+        @endforeach
+    @endif
                 </div>
                 <div class="links">
                     <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+
                 </div>
             </div>
         </div>

@@ -27,8 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::with('images')->get();dd($products); dd($image);
-        return view('home', ['product' => $products]);
+        $products = Product::with('images')->get(); 
+        return view('home', ['products' => $products]);
     }
 
 

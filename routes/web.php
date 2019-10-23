@@ -17,3 +17,6 @@ Route::post('/upload_file' ,'UploadController@upload')->middleware('auth')->name
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/products/{id}', 'ProductController@productsite')->name('product');
+
+Route::post('/checkout', 'ProductController@checkout')->name('checkout');

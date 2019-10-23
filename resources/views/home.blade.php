@@ -1,7 +1,4 @@
-@extends('layouts.app')
 
-
-<div class="container">
                 <div>
                     @if(isset($products))
                         @foreach($products as $product)
