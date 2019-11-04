@@ -6,7 +6,7 @@
             <img src="{{ asset('storage/images/'.$image->img)}}">
 
         @endforeach
-    <div>a href="{{route('product.addToCart', ['id'=> $product->id])}} </div>
+    <div>a href="{{route('shoppingCart', ['id'=> $product->id])}} </div>
 </div>
 
 

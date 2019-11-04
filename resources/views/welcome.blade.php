@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}"
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -67,6 +69,8 @@
         <div class="flex-center position-ref full-height">
                         @if (Route::has('login'))
                 <div class="top-right links">
+                   <a href="#"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>ShoppingCart
+                       <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty :''}}</span></a>
                     <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -89,7 +93,7 @@
         @foreach($products as $product)
             <table border="1">
                 <tr>
-                    <td>Наименование: <span>{{$product->name}}</td>
+                    <td>Наименование: <span>{{$product->name}}</span></td>
                     <td>Цена: <span>{{$product->price}}</span></td>
 
             <p>Наименование: <span>{{$product->name}}</span></p>
@@ -97,7 +101,7 @@
             @foreach($product->images as $image)
                         <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="200" height="200" ></a></td>
                 <td>
-                    <form action="{{ route('checkout')  }}" method="post">
+                    <form action="{{ route('shoppingCart') }}" method="Get">
                         @csrf
                         <input type="hidden" value="{{$product->id}}" name="product">
                         <button type="submit" >Купить</button>

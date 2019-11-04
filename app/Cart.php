@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Checkout
+class Cart
 {
     public $items = null;
-    public $totalQty = 0;
+public $totalQty = 0;
     public $totalPrice = 0;
     public function __construct($oldCart)
     {
