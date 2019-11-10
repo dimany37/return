@@ -71,10 +71,14 @@
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                 <ul class="list-group">
                     @foreach($products as $product)
+
                         <li class="list-group-item">
+
                             <span class="badge">{{ $product['qty'] }}</span>
-                            <strong>{{ $product['item']['title'] }}</strong>
+
+                            <strong>{{ $product['item']['name'] }}</strong>
                             <span class="label label-success">{{ $product['price'] }}</span>
+
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary btn-xs dropdown-toogle" data-toggle="dropdown">Action <span class="caret"></span></button>
                                 <ul class="dropdown-menu">

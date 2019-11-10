@@ -11,7 +11,7 @@ public $totalQty = 0;
     public $totalPrice = 0;
     public function __construct($oldCart)
     {
-        if ($oldCart);{
+        if (isset($oldCart)){
             $this->items = $oldCart->items;
             $this->totalQty = $oldCart->totalQty;
             $this->totalPrice = $oldCart->totalPrice;

@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', 'ProductController@products');
+Route::get('/', 'ProductController@products')->name('welcome');
 Route::get('/upload_file' ,'UploadController@getForm')->middleware('auth');
 Route::post('/upload_file' ,'UploadController@upload')->middleware('auth')->name('upload_file');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/AddToCart', 'ProductController@AddToCart')->name('AddToCart');
 Route::get('/products/{id}', 'ProductController@productsite')->name('product');
-
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
-Route::get('/shopping-cart', 'ProductController@getCart')->name('shoppingCart');
+Route::get('/shopping-cart', 'ProductController@getCart')->name('shopping-cart');

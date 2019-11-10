@@ -69,7 +69,7 @@
         <div class="flex-center position-ref full-height">
                         @if (Route::has('login'))
                 <div class="top-right links">
-                   <a href="{{ route('shoppingCart') }}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>ShoppingCart
+                   <a href="{{ route('shopping-cart') }}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>ShoppingCart
                        <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty :''}}</span></a>
                     <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
                     @auth
@@ -101,10 +101,10 @@
             @foreach($product->images as $image)
                         <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="200" height="200" ></a></td>
                 <td>
-                    <form action="{{ route('shoppingCart') }}" method="Get">
+                    <form action="{{ route('AddToCart') }}" method="post">
                         @csrf
                         <input type="hidden" value="{{$product->id}}" name="product">
-                        <button type="submit" >Купить</button>
+                        <button type="submit" >Добавить в корзину</button>
                     </form></td>
                 </tr>
                 </table>
