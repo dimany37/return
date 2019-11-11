@@ -18,6 +18,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/AddToCart', 'ProductController@AddToCart')->name('AddToCart');
+Route::post('/AddToCort', 'ProductController@AddToCort')->name('AddToCort');
 Route::get('/products/{id}', 'ProductController@productsite')->name('product');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 Route::get('/shopping-cart', 'ProductController@getCart')->name('shopping-cart');
+Route::get('/shopping-cort', 'ProductController@getCort')->name('shopping-cort');

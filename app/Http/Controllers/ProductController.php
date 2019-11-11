@@ -26,7 +26,12 @@ class ProductController extends Controller
           
         }
     }
+    public function AddToCort(){
+        $product = Product::find(request()->product);
+        request()->session()->put('id', $product); dd(request()->product);
 
+
+    }
     public function AddToCart(){
         $product = Product::find(request()->product);
         $oldCart = Session::has('cart') ? Session::get('cart'): null;
@@ -44,6 +49,17 @@ class ProductController extends Controller
         $cart = new Cart($oldCart);
         return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
        }
+    public function getCort(Request $request){
+        dd($request->all);
+        $data = $request->session()->all();
+             return view('shopping-cort');
+             dd($data);
+        }
+
+
+
+
+
 
      //Задача на дом....разобрасться в том что я только что сделал(будут вопросы пиши) и
         //  создать модель Саrt связать ее с продуктами и подумать как добавлять по кнопке купить продукты в корзину Cart
