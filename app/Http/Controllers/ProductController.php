@@ -28,7 +28,9 @@ class ProductController extends Controller
     }
     public function AddToCort(){
         $product = Product::find(request()->product);
-        request()->session()->put('id', $product); dd(request()->product);
+        request()->session()->put('product_id',request()->product);
+        dd(request()->session());
+       // request()->session()->put('id', $product); dd(request()->session());
 
 
     }
