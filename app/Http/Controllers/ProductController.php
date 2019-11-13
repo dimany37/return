@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Cart;
+use App\Carta;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,12 @@ class ProductController extends Controller
         }
     }
     public function AddToCort(){
-        $product = Product::find(request()->product);
-        request()->session()->put('product_id',request()->product);
+        $carta = new Carta;
+        $carta->product_id = request()->product;
+        $carta->quantity = '1';
+        $carta->save();
+        session()->put('carta_id',$carta->carta_id);
+
         dd(request()->session());
        // request()->session()->put('id', $product); dd(request()->session());
 
