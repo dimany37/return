@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use App\Cart;
 use App\Carta;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -27,36 +26,53 @@ class ProductController extends Controller
           
         }
     }
-    public function AddToCort(){
-        $carta = new Carta;
-        $carta->product_id = request()->product;
-        $carta->quantity = '1';
-        $carta->save();
-        session()->put('carta_id',$carta->carta_id);
+    public function AddToCort()
+    {
+        if (Session::has('carta_id')) {
+            $carta = Carta::find(session()->carta_id);
+            dd(carta_id);
+            $carta->product_id = request()->product;
+            $carta->quantity = '$carta->quantity+1';
+            $carta->save();
+            dd(request()->session());
+        } else {
 
-        dd(request()->session());
+            $carta = new Carta;
+            $carta->product_id = request()->product;
+            $carta->quantity = '1';
+            $carta->save();
+            session()->put('carta_id', $carta->carta_id);
+            dd(request()->session());
+
+
+        }
+    }
+
+
+          // dd(request()->session());
+
        // request()->session()->put('id', $product); dd(request()->session());
 
 
-    }
-    public function AddToCart(){
-        $product = Product::find(request()->product);
-        $oldCart = Session::has('cart') ? Session::get('cart'): null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $product->id);
-        request()->session()->put('cart', $cart);
+   // }
+  //  public function AddToCart(){
+    //    $product = Product::find(request()->product);
+    //    $oldCart = Session::has('cart') ? Session::get('cart'): null;
+   //     $cart = new Cart($oldCart);
+    //    $cart->add($product, $product->id);
+   //     request()->session()->put('cart', $cart);
 
-        return redirect()->route('welcome');
-    }
-    public function getCart(){
-       if (!Session::has('cart')){
-           return view('shopping-cart', ['products'=>null]);
-       }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
-       }
-    public function getCort(Request $request){
+     //   return redirect()->route('welcome');
+   // }
+  //  public function getCart(){
+   //    if (!Session::has('cart')){
+    //       return view('shopping-cart', ['products'=>null]);
+      // }
+        //$oldCart = Session::get('cart');
+      //  $cart = new Cart($oldCart);
+       // return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    //   }
+   public function getCort(Request $request){
         dd($request->all);
         $data = $request->session()->all();
              return view('shopping-cort');
