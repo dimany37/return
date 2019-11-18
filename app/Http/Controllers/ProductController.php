@@ -23,23 +23,22 @@ class ProductController extends Controller
             $product = Product::with('images')->where('id', $id)->first();
 
             return view('product', ['product' => $product]);
-          
+
         }
     }
     public function AddToCort()
     {
         if (Session::has('carta_id')) {
             $carta = Carta::find(session()->carta_id);
-            dd(carta_id);
             $carta->product_id = request()->product;
-            $carta->quantity = '$carta->quantity+1';
+            $carta->quantity = $carta->quantity+request()->quantity;
             $carta->save();
             dd(request()->session());
         } else {
 
             $carta = new Carta;
             $carta->product_id = request()->product;
-            $carta->quantity = '1';
+            $carta->quantity = request()->quantity;
             $carta->save();
             session()->put('carta_id', $carta->carta_id);
             dd(request()->session());
@@ -72,11 +71,11 @@ class ProductController extends Controller
       //  $cart = new Cart($oldCart);
        // return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     //   }
-   public function getCort(Request $request){
-        dd($request->all);
-        $data = $request->session()->all();
+   public function getCort(){
+
+       $cartas = Carta::with('products')->get();
              return view('shopping-cort');
-             dd($data);
+
         }
 
 

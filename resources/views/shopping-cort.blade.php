@@ -66,5 +66,16 @@
     </style>
 </head>
 <body>
-{{ $data }};
+<div>
+    if (Session::has('carta_id')){
+        @foreach($cartas as $carta)
+        <p>Наименование: <span>{{$carta->carta_id}}</span></p>
+        <p>Цена: <span>{{$carta->product_id}}</span>
+        <p>Цена: <span>{{$carta->quantity}}</span>}
+        else{
+            echo ('нет билет')}
+
+        @endforeach
+
+</div>
 </body>
