@@ -104,8 +104,8 @@
                     <form action="{{ route('AddToCort') }}" method="post">
                         @csrf
                         <input type="hidden" value="{{$product->id}}" name="product">
-                        <p>количество<span><input value="{{$carta->quantity}}" name="quantity"></span></p>
-dd(quantity);
+                        <p>количество<span><input  name="quantity"></span></p>
+
                         <button type="submit" >Добавить в корзину</button>
                     </form></td>
                 </tr>

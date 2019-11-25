@@ -28,24 +28,28 @@ class ProductController extends Controller
     }
     public function AddToCort()
     {
-        if (Session::has('carta_id')) {
-            $carta = Carta::find(session()->carta_id);
-            $carta->product_id = request()->product;
-            $carta->quantity = $carta->quantity+request()->quantity;
-            $carta->save();
-            dd(request()->session());
-        } else {
-
+       // if (Session::has('carta_id')) {
+        //    $carta = Carta::find(session()->carta_id);
+        //    $carta->product_id = request()->product_id;
+         //   $carta->quantity = $carta->quantity+request()->quantity;
+         //   $carta->save();
+          //  dd(request()->session());
+      //  } else {
             $carta = new Carta;
-            $carta->product_id = request()->product;
-            $carta->quantity = request()->quantity;
             $carta->save();
+//завели id_cart
             session()->put('carta_id', $carta->carta_id);
+//закинули в сессию
+            $product = Product::find(request()->product);
+//нашли продукт с id добавленного товара
+            $product->cartas()->attach(session()->get('carta_id'));
+        dd(request());
+            $product->cartas()->attach(request()->quantity);
             dd(request()->session());
 
 
         }
-    }
+   // }
 
 
           // dd(request()->session());

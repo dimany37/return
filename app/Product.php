@@ -10,4 +10,8 @@ class Product extends Model
     {
         return $this->hasMany('App\Image');
     }
+    public function cartas()
+    {
+        return $this->belongsToMany('App\Carta');
+    }
 }
