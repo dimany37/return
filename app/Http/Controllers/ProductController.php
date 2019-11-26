@@ -38,13 +38,15 @@ class ProductController extends Controller
             $carta = new Carta;
             $carta->save();
 //завели id_cart
-            session()->put('carta_id', $carta->carta_id);
+            session()->put('carta_id', $carta->id);
 //закинули в сессию
+        
             $product = Product::find(request()->product);
 //нашли продукт с id добавленного товара
             $product->cartas()->attach(session()->get('carta_id'));
-        dd(request());
-            $product->cartas()->attach(request()->quantity);
+
+        $cart_product = Cart_product::find(request()->product)->quantity ;
+        $cart_product->quantity = (request()->quantity);
             dd(request()->session());
 
 
