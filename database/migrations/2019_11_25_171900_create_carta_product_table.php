@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateCartaProductTable extends Migration
 {
     /**
@@ -16,7 +17,7 @@ class CreateCartaProductTable extends Migration
         Schema::create('carta_product', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('product_id');
-            $table->integer('quantity');
+            $table->integer('quantity')->default('1');;
             $table->integer('carta_id');
 
             $table->timestamps();

@@ -12,6 +12,6 @@ class Product extends Model
     }
     public function cartas()
     {
-        return $this->belongsToMany('App\Carta','Carta_product','product_id');
+        return $this->belongsToMany('App\Carta','Carta_product','product_id')->withPivot('quantity');
     }
 }

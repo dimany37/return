@@ -47,8 +47,9 @@ class ProductController extends Controller
 
             $product->cartas()->attach(session()->get('carta_id'));
 
-        $cart_product = Carta::find(request()->product)->quantity ;
-        $cart_product->quantity = (request()->quantity);
+        $product_quantity = Product::find(request()->product);
+       // dd(request()->product);
+        $product_quantity->pivot->quantity = (request()->quantity);
 
 
         }

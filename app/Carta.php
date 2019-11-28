@@ -9,6 +9,6 @@ class Carta extends Model
    // protected $primaryKey = 'id';
     public function products()
     {
-        return $this->belongsToMany('App\Product','carta_product','carta_id');
+        return $this->belongsToMany('App\Product','carta_product','carta_id')->withPivot('quantity');
     }
 }
