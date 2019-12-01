@@ -15,8 +15,7 @@
              @csrf
             <label>Наименование продукта</label><winput type="text" name="name"><br>
             <label>ОПисание</label><input type="text" name="description"><br>
-            <label>Цена</label><input type="text"name="price" ><br>
-            <input name="_token" type="hidden" value="{{ csrf_token() }}">
+            <label>Цена</label><input type="text"name="price" ><br
             <input type="file" multiple name="file[]">
             <button type="submit">Загрузить</button><br>
 

@@ -69,9 +69,9 @@
 <div>
     if (Session::has('carta_id')){
         @foreach($cartas as $carta)
-        <p>Наименование: <span>{{$carta->carta_id}}</span></p>
-        <p>Цена: <span>{{$carta->product_id}}</span>
-        <p>Цена: <span>{{$carta->quantity}}</span>}
+        <p>Наименование: <span>{{$cartas->carta_id}}</span></p>
+        <p>Цена: <span>{{$cartas->product_id}}</span>
+        <p>Цена: <span>{{$cartas->quantity}}</span>}
         else{
             echo ('нет билет')}
 

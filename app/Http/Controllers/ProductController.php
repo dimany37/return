@@ -28,13 +28,19 @@ class ProductController extends Controller
     }
     public function AddToCort()
     {
-       // if (Session::has('carta_id')) {
-        //    $carta = Carta::find(session()->carta_id);
-        //    $carta->product_id = request()->product_id;
-         //   $carta->quantity = $carta->quantity+request()->quantity;
-         //   $carta->save();
-          //  dd(request()->session());
-      //  } else {
+        if (Session::has('carta_id')) {
+            $product = Product::find(request()->product);
+            $product->cartas()->attach(session()->get('carta_id'));// тут должно быть что то типо если есть продукт то +request()-quantity если нет продукт то
+
+            //$product_quantity = Carta::find(session()->get('carta_id'));dd($product_quantity->products);
+            $cart = $product->cartas->where('id',session()->get('carta_id') )->first();
+            $cart->pivot->quantity = request()->quantity;
+            $cart->pivot->save();
+            dd(session()->get('carta_id'));
+            //$product_quantity->pivot->quantity = request()->quantity;
+
+
+       } else {
             $carta = new Carta;
             $carta->save();
 //завели id_cart
@@ -48,12 +54,12 @@ class ProductController extends Controller
             $product->cartas()->attach(session()->get('carta_id'));
 
         $product_quantity = Product::find(request()->product);
-       // dd(request()->product);
-        $product_quantity->pivot->quantity = (request()->quantity);
+      // dd(request()->product);
+        $product_quantity->pivot->quantity = request()->quantity;
 
 
         }
-   // }
+   }
 
 
           // dd(request()->session());
