@@ -6,6 +6,7 @@ use App\Product;
 use App\Carta;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use DB;
 
 class ProductController extends Controller
 {
@@ -29,7 +30,32 @@ class ProductController extends Controller
     public function AddToCort()
     {
         if (Session::has('carta_id')) {
-            $product = Product::find(request()->product);
+            $carta = Carta::where("id" , request()->carta_id)->get()->first;
+        //dd(request()->session()->all());
+            $carta_id=request()->session()->get('carta_id');
+            //dd($carta_id);
+            $product = request()->get('product');
+            //dd($product);
+          // $product_Cart_id= $carta->products()->pivot->groupBy('id')->keys();
+           // dd($product_Cart_id);
+           // $array_product = $carta->products()->pivot()->get([product_id]);
+           // dd($array_product);
+            $product_cart = DB::table('carta_product')->where('carta_id', '=', $carta_id)->get();
+           //dd($product_cart);
+            $pluck_product = $product_cart->pluck('product_id');
+            dd($pluck_product);
+            if (in_array('$product', $pluck_product)){
+            $carta->products()->pivot->product_quantity+=request()->quantity;}
+            else{
+
+
+            }
+
+         //   ->pluck('product_id')
+
+          //  $collection = collect(['name' => 'Desk', 'price' => 100])->all();
+           // $Product_Cart = $carta->
+           // $product = $carta->products()->product_id;
          //   dd(request()->product);
             $product->cartas()->attach(session()->get('carta_id'));
             //$product_quantity = Carta::find(session()->get('carta_id'));dd($product_quantity->products);
@@ -49,8 +75,10 @@ class ProductController extends Controller
        else {
             $carta = new Carta;
             $carta->save();
+
 //завели id_cart
         request()->session()->put('carta_id', $carta->id);
+           //dd(request()->session()->all());
 //закинули в сессию
      // dd(request()->session());
             $product = Product::find(request()->product);
@@ -61,7 +89,7 @@ class ProductController extends Controller
 
         $product_quantity = Product::find(request()->product);
       // dd(request()->product);
-        $product_quantity->pivot->quantity =quantity+request()->quantity;
+        $product_quantity->pivot->quantity+=request()->quantity;
 
 
         }
