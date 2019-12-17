@@ -29,14 +29,44 @@ class ProductController extends Controller
     }
     public function AddToCort()
     {
-        if (!Session::has('carta_id')) {
+        if (!Session:: has ('carta_id')){
+$carta = new Carta;
+            $carta->save();
+request()->session()->put('carta_id', $carta->id);}
 
 
-            $carta = new Carta;
+$carta_id = request()->session()->get('carta_id');
+        //dd($carta_id);
+$carta = Carta::where('id' , $carta_id)->first();
+      // dd($carta);
+$product = request()->get('product');
+       // dd($product);
+$product_cart = DB::table('carta_product')->where('carta_id', '$carta_id')->get();
+        //dd($product_cart);
+$contains_product = $product_cart->contains('product_id', $product);
+      // dd($contains_product);
+if ($contains_product == true)
+{
+   $product_in_cart = DB:: table ('carta_product')->where([['carta_id', $carta_id],['product_id',$product]])->increment('quantity', request()->quantity);
+}
+else
+{
+    $carta->products()->attach($product);
+    //dd(request()->quantity);
+    $quantity_in_cart = DB:: table ('carta_product')->where([['carta_id', $carta_id],['product_id',$product]])->increment('quantity', request()->quantity);
+    //dd($carta->products()->pivot()->quantity);
+   // $carta->products()->pivot()->quantity->attach(request()->quantity);
+}
+}
+   //{
+      //  if (!Session::has('carta_id')) {
+
+
+         //   $carta = new Carta;
 //разберись с ифами
 
 //завели id_cart
-        request()->session()->put('carta_id', $carta->id);
+       // request()->session()->put('carta_id', $carta->id);
            //dd(request()->session()->all());
 //закинули в сессию
      // dd(request()->session());
@@ -45,42 +75,42 @@ class ProductController extends Controller
 //нашли продукт с id добавленного товара
 
            /// $product->cartas()->attach(session()->get('carta_id'))->update(['quantity' => request()->quantity]);
-        }
+      //  }
 
-            else{
+         //   else{
 
-            $carta_id=request()->session()->get('carta_id');
-            $carta = Carta::where('id' , $carta_id)->first();
+          //  $carta_id=request()->session()->get('carta_id');
+          //  $carta = Carta::where('id' , $carta_id)->first();
 
-            $product = request()->get('product');
+          //  $product = request()->get('product');
 
             // dd($product);
-            $product_cart = DB::table('carta_product')->where('carta_id', $carta_id)->get();
+          //  $product_cart = DB::table('carta_product')->where('carta_id', $carta_id)->get();
             //dd($product_cart);
-            $contains_product = $product_cart->contains('product_id', $product);
+          //  $contains_product = $product_cart->contains('product_id', $product);
             //dd($product);
                // dd($contains_product);
-            if ($contains_product == true){//семен семеныч.....чем отличется = от == ?
+          //  if ($contains_product == true){//семен семеныч.....чем отличется = от == ?
 
                 //dd($contains_product);
-                $products_in_cart = db::table('carta_product')->where([['carta_id', $carta_id],['product_id', $product]])
-                    ->increment('quantity', request()->quantity);
+            //    $products_in_cart = db::table('carta_product')->where([['carta_id', $carta_id],['product_id', $product]])
+            //        ->increment('quantity', request()->quantity);
 
                 //выдает null
                 // dd($contains_product);
                 //$products_in_cart->insert(['quantity' => request()->quantity]);
 
 
-            } else {//тут ты должен добавить в карту продукт да чё то
+          //  } else {//тут ты должен добавить в карту продукт да чё то
 
-               $carta->products()->sync($product);
+           //    $carta->products()->sync($product);
                // dd( $carta_id);//откуда у тебя carta_id если ее нет
                 //$product = Product::where("id", $product)->first();
                // $product->cartas()->attach(session()->get('carta_id'));
               //  $product->cartas()->pivot()->quantity->attach(request()->get('quantity')); так можно доюбавлять?
-                 dd($carta);
-            }
-        }
+         //        dd($carta);
+        //    }
+       // }
 
       //else {
 
@@ -94,7 +124,7 @@ class ProductController extends Controller
 
           // dd(request()->session());
 
-   }
+  // }
 
 
           // dd(request()->session());
