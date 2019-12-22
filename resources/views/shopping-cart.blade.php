@@ -66,15 +66,28 @@
     </style>
 </head>
 <body>
-    @if(Session::has('cart'))
+  //
+      <div>
+          @if(isset($products))
+              @foreach($products as $product_cart) в цикле перебарем все продукты
+              <p>Наименование: <span>{{$product->name}}</span></p>
+              <p>Цена: <span>{{$product->price}}</span>
+                  так как картинки у нас тоже массив то их тоже перебираем в цикле
+              @foreach($product->images as $image)
+                  <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}"></p>
+                  и для каждого продукта выводим картинку
+              @endforeach
+              @endforeach
+          @endif
+      </div>
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                 <ul class="list-group">
-                    @foreach($products as $product)
+                    @foreach($product as $products_cart)
 
                         <li class="list-group-item">
 
-                            <span class="badge">{{ $product['qty'] }}</span>
+                            <span class="badge">{{ $products_cart->product }}</span>
 
                             <strong>{{ $product['item']['name'] }}</strong>
                             <span class="label label-success">{{ $product['price'] }}</span>

@@ -22,4 +22,4 @@ Route::post('/AddToCort', 'ProductController@AddToCort')->name('AddToCort');
 Route::get('/products/{id}', 'ProductController@productsite')->name('product');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 
-Route::get('/shopping-cort', 'ProductController@getCort')->name('shopping-cort');
+Route::get('/shopping-cart', 'ProductController@getCart')->name('shopping-cart');

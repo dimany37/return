@@ -67,15 +67,19 @@
 </head>
 <body>
 <div>
-    if (Session::has('carta_id')){
-        @foreach($cartas as $carta)
-        <p>Наименование: <span>{{$cartas->carta_id}}</span></p>
-        <p>Цена: <span>{{$cartas->product_id}}</span>
-        <p>Цена: <span>{{$cartas->quantity}}</span>}
-        else{
-            echo ('нет билет')}
-
-        @endforeach
+    <div>
+        @if(isset($products_cart))
+            @foreach($products as $product) в цикле перебарем все продукты
+            <p>Наименование: <span>{{$product->name}}</span></p>
+            <p>Цена: <span>{{$product->price}}</span>
+                так как картинки у нас тоже массив то их тоже перебираем в цикле
+            @foreach($product->images as $image)
+                <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}"></p>
+                и для каждого продукта выводим картинку
+            @endforeach
+            @endforeach
+        @endif
+    </div>
 
 </div>
 </body>

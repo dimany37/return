@@ -69,7 +69,7 @@
         <div class="flex-center position-ref full-height">
                         @if (Route::has('login'))
                 <div class="top-right links">
-                   <a href="{{ route('shopping-cort') }}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>ShoppingCart
+                   <a href="{{ route('shopping-cart') }}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>ShoppingCart
                        <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty :''}}</span></a>
                     <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
                     @auth
