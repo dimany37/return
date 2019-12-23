@@ -66,60 +66,18 @@
     </style>
 </head>
 <body>
-  //
+
       <div>
-          @if(isset($products))
-              @foreach($products as $product_cart) в цикле перебарем все продукты
-              <p>Наименование: <span>{{$product->name}}</span></p>
-              <p>Цена: <span>{{$product->price}}</span>
-                  так как картинки у нас тоже массив то их тоже перебираем в цикле
-              @foreach($product->images as $image)
-                  <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}"></p>
-                  и для каждого продукта выводим картинку
+          @if(isset($carta))
+              @foreach($carta->products as $product)
+                  <p>название <span>{{$product->name}}</span></p>
+                  <p>стоимость <span>{{$product->price}}</span></p>
+                  @foreach($product->images as $image)
+                      <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}"></p>
+                  @endforeach
+
               @endforeach
-              @endforeach
-          @endif
-      </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                <ul class="list-group">
-                    @foreach($product as $products_cart)
-
-                        <li class="list-group-item">
-
-                            <span class="badge">{{ $products_cart->product }}</span>
-
-                            <strong>{{ $product['item']['name'] }}</strong>
-                            <span class="label label-success">{{ $product['price'] }}</span>
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary btn-xs dropdown-toogle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Reduce by 1</a></li>
-                                    <li><a href="#">Reduce All</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                <strong>Total: {{ $totalPrice }}</strong>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                <button type="button" class="btn btn-success">Checkout</button>
-            </div>
-        </div>
-    @else
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                <h2>No Items in Cart!</h2>
-            </div>
-        </div>
 @endif
+      </div>
+
 </body>

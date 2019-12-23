@@ -14,6 +14,7 @@ class ProductController extends Controller
 
     {
         $products = Product::with('images')->get();
+       // dd($products);
         return view('welcome', ['products' => $products]);
         }
 
@@ -79,15 +80,12 @@ else
    public function getCart(){
 
        $carta_id = request()->session()->get('carta_id');
-       $products_cart = DB::table('carta_product')->where('carta_id','=', $carta_id)->get();
-       $products_cart->toArray();
+       //dd($carta_id);
+       $carta = Carta::with('products')->where('id', $carta_id)->first();
+       //dd($carta);
 
-      dd($products_cart);
-       $products = Product::with('images')->where(['id','=', $products_cart->product_id])->get();
-
-
-      dd($products);
-       return view('shopping-cart',['products' => $products]);
+      //dd($products);
+       return view('shopping-cart',['carta' => $carta]);
 
 
    }
