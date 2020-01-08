@@ -72,11 +72,15 @@
               @foreach($carta->products as $product)
                   <p>название <span>{{$product->name}}</span></p>
                   <p>стоимость <span>{{$product->price}}</span></p>
+                  <p>Количество <span>{{$product->pivot->quantity}}</span></p>
                   @foreach($product->images as $image)
                       <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}"></p>
                   @endforeach
 
               @endforeach
+                  <p>ОБщая стоимость <span>{{$totalPrice}}</span></p>
+              @else
+              echo('нет товаров')
 @endif
       </div>
 
