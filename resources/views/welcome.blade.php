@@ -69,8 +69,9 @@
         <div class="flex-center position-ref full-height">
                         @if (Route::has('login'))
                 <div class="top-right links">
-                   <a href="{{ route('shopping-cart') }}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>ShoppingCart
-                       <span class="badge">{{$TotalPrice}}</span></a>
+                    <div><a href="{{ route('shopping-cart') }}"> <i class="fa fa-shopping-cart" aria-hidden="true">В корзине <span class="badge">{{$TotalQuantity}}</span>товаров
+                                на сумму <span class="badge">{{$TotalPrice}}</span>рублей</i></a></div>
+
                     <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -99,7 +100,7 @@
             <p>Наименование: <span>{{$product->name}}</span></p>
             <p>Цена: <span>{{$product->price}}</span>
             @foreach($product->images as $image)
-                        <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="200" height="200" ></a></td>
+                        <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100" ></a></td>
                 <td>
                     <form action="{{ route('AddToCort') }}" method="post">
                         @csrf

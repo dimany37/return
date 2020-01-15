@@ -13,22 +13,22 @@
     <body>
         <form method="post" action="{{ route('upload_file') }}" enctype="multipart/form-data">
              @csrf
-            <label>Наименование продукта</label><winput type="text" name="name"><br>
+            <label>Наименование продукта</label><input type="text" name="name"><br>
             <label>ОПисание</label><input type="text" name="description"><br>
-            <label>Цена</label><input type="text"name="price" ><br
-            <input type="file" multiple name="file[]">
+            <label>Цена</label><input type="text"name="price" ><br>
+            <label>Изображение</label><input type="file" multiple name="file[]">
             <button type="submit">Загрузить</button><br>
 
         </form>
         <div>
             @if(isset($products))
-                @foreach($products as $product) в цикле перебарем все продукты
+                @foreach($products as $product)
             <p>Наименование: <span>{{$product->name}}</span></p>
                 <p>Цена: <span>{{$product->price}}</span>
-            так как картинки у нас тоже массив то их тоже перебираем в цикле
+
                 @foreach($product->images as $image)
                 <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}"></p>
-                 и для каждого продукта выводим картинку
+
                 @endforeach
                 @endforeach
             @endif

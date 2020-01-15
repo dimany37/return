@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -74,7 +75,7 @@
             <p>Цена: <span>{{$product->price}}</span>
                 так как картинки у нас тоже массив то их тоже перебираем в цикле
             @foreach($product->images as $image)
-                <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}"></p>
+                <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="111"></p>
                 и для каждого продукта выводим картинку
             @endforeach
             @endforeach
