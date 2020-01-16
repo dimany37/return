@@ -73,12 +73,12 @@
                   <p>название <span>{{$product->name}}=</span></p>
                   <p>стоимость <span>{{$product->price}}</span></p>
                   <p>Количество <span>{{$product->pivot->quantity}}</span></p>
+              <p hidden="true">{{$product->id}}</p>
                   @foreach($product->images as $image)
                       <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100"></p>
                   @endforeach
                       <button type="submit" id='del'>Удалить</button><br>
-                      <div> id={{$product->id}}></div>
-                      <script>
+                  <script>
                           $(document).ready(function(){
                               $('#del').on('click',function(){
                                   $.post("/shopping-cart",{

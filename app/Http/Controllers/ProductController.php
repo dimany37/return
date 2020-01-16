@@ -87,20 +87,17 @@ else
     //   }
 
 
-    public function delete(){
 
-        $carta_id = session('carta_id');
-        $product_id=$_POST["id"];
-        $quantity =$_POST["quantity"];
-       $carta = DB::table ('carta_product')->where([['carta_id', $carta_id],['product_id',$product_id]])->delete();
-       $carta->save();
+        Public function delete(Request $request){
+            $carta_id = session(‘carta_id’);
+            $product_id = $request->id;
+            $quantity = $request->quantity;
+            $carta = Carta::with(‘products’)->where(`id`, $carta_id)->first();
+            $carta->products()->detach($product_id, $quantity);
+            $carta->save();
 
-       // $carta = Carta::with('products')->where('id', $carta_id)->first();
-      //  $carta->products()->delete($product_id, ['quantity' => request()->quantity]);
-
-        $totalPrice = Carta::getTotalPrice($carta_id);
-        $totalQuantity =Carta::getTotalQuantity($carta_id);
-        // dd ($totalQuantity);
+            $totalPrice = Carta::getTotalPrice($carta_id);
+$totalQuantity =Carta::getTotalQuantity($carta_id);
         return view('shopping-cart',['carta' => $carta,'totalPrice' => $totalPrice, 'totalQuantity' => $totalQuantity,]);
 
 
