@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
     <title>Laravel</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -77,29 +77,33 @@
                   @foreach($product->images as $image)
                       <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100"></p>
                   @endforeach
-                      <button type="submit" id='del'>Удалить</button><br>
-                  <script>
-                          $(document).ready(function(){
-                              $('#del').on('click',function(){
-                                  $.post("/shopping-cart",{
-                                      'id': id,
-                                      'quantity': quantity,
-                                  },
-                                     function(data){
-                                      alert(data)
-                                  });
-                              });
-                          });
-                      </script>
-
-
-
+                      <button type="submit" onclick='del({{$product->id}},{{$totalQuantity}})'>Удалить</button><br>
               @endforeach
                   <p>Количество товаров <span>{{$totalQuantity}}</span></p>
                   <p>ОБщая стоимость <span>{{$totalPrice}}</span></p>
               @else
               echo('нет товаров')
-@endif
+            @endif
       </div>
-
+      <script
+              src="https://code.jquery.com/jquery-3.4.1.js"
+              integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+              crossorigin="anonymous"></script>
+      <script>
+         // $(document).ready(function() {
+               function del(id, quantity) {
+              //$('#del').on('click', function () {
+                //let token = $('meta[name="csrf-token"]').attr('content');
+                  $.post("{{route('delete')}}", {//это маршрут
+                          '_token': '{{ csrf_token() }}',
+                          'id': id,
+                          'quantity': quantity,///вот эти данные
+                      },
+                      function (data) {
+                          alert('продукт удален');
+                      });
+            //  });
+          }
+        //  });
+      </script>
 </body>

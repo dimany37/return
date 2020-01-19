@@ -23,3 +23,5 @@ Route::get('/products/{id}', 'ProductController@productsite')->name('product');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 
 Route::get('/shopping-cart', 'ProductController@getCart')->name('shopping-cart');
+
+Route::post('/shopping-cart', 'ProductController@delete')->name('delete');

@@ -88,17 +88,18 @@ else
 
 
 
-        Public function delete(Request $request){
-            $carta_id = session(‘carta_id’);
+        public function delete(Request $request)
+        {
+            $carta_id = session('carta_id');
             $product_id = $request->id;
             $quantity = $request->quantity;
-            $carta = Carta::with(‘products’)->where(`id`, $carta_id)->first();
+            $carta = Carta::with('products')->where('id', $carta_id)->first();
             $carta->products()->detach($product_id, $quantity);
             $carta->save();
 
             $totalPrice = Carta::getTotalPrice($carta_id);
 $totalQuantity =Carta::getTotalQuantity($carta_id);
-        return view('shopping-cart',['carta' => $carta,'totalPrice' => $totalPrice, 'totalQuantity' => $totalQuantity,]);
+        return ['carta' => $carta,'totalPrice' => $totalPrice, 'totalQuantity' => $totalQuantity,];
 
 
     }
@@ -113,11 +114,13 @@ $totalQuantity =Carta::getTotalQuantity($carta_id);
 
        $totalPrice = Carta::getTotalPrice($carta_id);
        $totalQuantity =Carta::getTotalQuantity($carta_id);
-      // dd ($totalQuantity);
+      // dd ($carta->products()->id);
        return view('shopping-cart',['carta' => $carta,'totalPrice' => $totalPrice, 'totalQuantity' => $totalQuantity,]);
 
 
    }
+
+
 
 
 
