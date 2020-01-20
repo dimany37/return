@@ -67,7 +67,7 @@
 </head>
 <body>
 
-      <div>
+      <div id="cart">
           @if(isset($carta))
               @foreach($carta->products as $product)
                   <p>название <span>{{$product->name}}=</span></p>
@@ -77,7 +77,7 @@
                   @foreach($product->images as $image)
                       <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100"></p>
                   @endforeach
-                      <button type="submit" onclick='del({{$product->id}},{{$totalQuantity}})'>Удалить</button><br>
+                      <button type="submit" onclick='del({{$product->id}},{{$product->pivot->quantity}})'>Удалить</button><br>
               @endforeach
                   <p>Количество товаров <span>{{$totalQuantity}}</span></p>
                   <p>ОБщая стоимость <span>{{$totalPrice}}</span></p>
@@ -100,7 +100,7 @@
                           'quantity': quantity,///вот эти данные
                       },
                       function (data) {
-                          alert('продукт удален');
+                          $('#cart').html(data.html);
                       });
             //  });
           }

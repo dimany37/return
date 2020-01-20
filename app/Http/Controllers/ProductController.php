@@ -92,14 +92,15 @@ else
         {
             $carta_id = session('carta_id');
             $product_id = $request->id;
-            $quantity = $request->quantity;
+            $quantity = $request->quantity;$quantity = 1;
             $carta = Carta::with('products')->where('id', $carta_id)->first();
-            $carta->products()->detach($product_id, $quantity);
+            $carta->products()->detach($product_id, $quantity);//
             $carta->save();
 
             $totalPrice = Carta::getTotalPrice($carta_id);
 $totalQuantity =Carta::getTotalQuantity($carta_id);
-        return ['carta' => $carta,'totalPrice' => $totalPrice, 'totalQuantity' => $totalQuantity,];
+            $contents = view()->make('template.cart')->with(['carta','totalPrice','totalQuantity'],[$carta, $totalPrice, $totalQuantity]);
+        return ['html'=>$contents->render()];
 
 
     }
