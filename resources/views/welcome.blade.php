@@ -69,8 +69,16 @@
         <div class="flex-center position-ref full-height">
                         @if (Route::has('login'))
                 <div class="top-right links">
-                    <div><a href="{{ route('shopping-cart') }}"> <i class="fa fa-shopping-cart" aria-hidden="true">В корзине <span class="badge">{{$TotalQuantity}}</span>товаров
-                                на сумму <span class="badge">{{$TotalPrice}}</span>рублей</i></a></div>
+                    <div><a href="{{ route('shopping-cart') }}"> <i class="fa fa-shopping-cart" aria-hidden="true">В корзине <div class="badge" id = "ttq"></div>товаров
+                                на сумму <span class="badge" id = "ttp">{{$TotalPrice}}</span>рублей</i></a></div>
+                    <script>
+                        $(document).ready(function(){
+                            $('#button').on('click',function(data){
+                                $('#ttq').text("Режим посчитан!");
+                            });
+                        });
+                    </script>
+
 
                     <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
                     @auth
@@ -107,7 +115,7 @@
                         <input type="hidden" value="{{$product->id}}" name="product">
                         <p>количество<span><input  name="quantity"></span></p>
 
-                        <button type="submit" >Добавить в корзину</button>
+                        <button type="submit" id = "button" >Добавить в корзину</button>
                     </form></td>
                 </tr>
                 </table>

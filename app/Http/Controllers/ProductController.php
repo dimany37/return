@@ -41,9 +41,6 @@ class ProductController extends Controller
             $carta->save();
             request()->session()->put('carta_id', $carta->id);
         }
-
-
-
 $carta_id = session('carta_id');
 
         //dd($carta_id);
@@ -55,53 +52,45 @@ $product_cart = DB::table('carta_product')->where('carta_id','=', $carta_id)->ge
      // dd($product_cart);
 $contains_product = $product_cart->contains('product_id', $product);
         $TotalPrice =Carta::getTotalPrice($carta_id);
-     $TotalQuantity =Carta::getTotalQuantity($carta_id);
-
+     $TotalQuantity =Carta::getTotalQuantity($carta_id);//вот они
 if ($contains_product == true)
 {
-    //$carta->products()->sync($product, ['quantity' => request()->quantity+'quantity']);
-   DB:: table ('carta_product')->where([['carta_id', $carta_id],['product_id',$product]])->increment('quantity', request()->quantity);
+    //)))))
+   DB:: table ('carta_product')->where([['carta_id', $carta_id],['product_id',$product]])->increment('quantity', request()->quantity)// А КАК ПО ОДНОМУ УДАЛЯТЬ С КОРЗИНЫ ВМЕСТО ДЕТАЧ ну ты понял_))
    ;
-
 }
 else
 {
     $carta->products()->attach($product, ['quantity' => request()->quantity]);
-
 }
         $products = Product::with('images')->get();
+        $TotalPrice =Carta::getTotalPrice($carta_id);
+        $TotalQuantity =Carta::getTotalQuantity($carta_id);
        // dd ($TotalQuantity);
-        return view('welcome', ['products' => $products,'TotalQuantity' => $TotalQuantity,'TotalPrice' => $TotalPrice]);
+      //  $contents = view('welcome',compact('TotalQuantity','TotalPrice', 'products' ));
+       // return ['html'=>$contents->render()];
+       return view('welcome', ['products' => $products,'TotalQuantity' => $TotalQuantity,'TotalPrice' => $TotalPrice]);
        // return view('welcome', ['products' => $products],['TotalQuantity' => $TotalQuantity]);
 }
 
 
-   // }
-  //  public function getCart(){
-   //    if (!Session::has('cart')){
-    //       return view('shopping-cart', ['products'=>null]);
-      // }
-        //$oldCart = Session::get('cart');
-      //  $cart = new Cart($oldCart);
-       // return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
-    //   }
-
-
-
+   //
         public function delete(Request $request)
-        {
-            $carta_id = session('carta_id');
+        {// dd($request->quantity);
+            $carta_id = session('carta_id');// в общем...тебе надо сделать...если 0 то писец не погодь
             $product_id = $request->id;
-            $quantity = $request->quantity;//$quantity = 1;
+            $quantity = $request->quantity;//так можно -1? da
+            //$quantity =1;
+         DB:: table ('carta_product')->where([['carta_id', $carta_id],['product_id',$product_id]])->decrement('quantity', $quantity);
             $carta = Carta::with('products')->where('id', $carta_id)->first();
-            $carta->products()->detach($product_id, $quantity);//
-            $carta->save();
-
+           // $carta->products()->detach($product_id, $quantity);
+            //$carta->save();
             $totalPrice = Carta::getTotalPrice($carta_id);
-$totalQuantity =Carta::getTotalQuantity($carta_id);
-            $contents = view('template.cart',compact('carta','totalPrice','totalQuantity'));
+
+            $totalQuantity =Carta::getTotalQuantity($carta_id);
+            $html = view('template.cart',compact('carta','totalPrice','totalQuantity'))->render();
             //dd($carta);
-        return ['html'=>$contents->render()];
+        return compact('html', 'totalPrice', 'totalQuantity');//от массив в чем вопрос?
 
 
     }
@@ -110,13 +99,18 @@ $totalQuantity =Carta::getTotalQuantity($carta_id);
 
    public function getCart(){
 
-       $carta_id = request()->session()->get('carta_id');
-       //dd($carta_id);
-       $carta = Carta::with('products')->where('id', $carta_id)->first();
+       $carta = null;
+       $totalPrice = $totalQuantity = 0;
+            if (request()->session()->get('carta_id')) {
+                $carta_id = request()->session()->get('carta_id');
+                //dd($carta_id);
+                $carta = Carta::with('products')->where('id', $carta_id)->first();
 
-       $totalPrice = Carta::getTotalPrice($carta_id);
-       $totalQuantity =Carta::getTotalQuantity($carta_id);
-      // dd ($carta->products()->id);
+                $totalPrice = Carta::getTotalPrice($carta_id);
+                $totalQuantity = Carta::getTotalQuantity($carta_id);
+                //foreach ($carta->products as $product)
+                //dd($product->pivot->quantity);
+             }
        return view('shopping-cart',['carta' => $carta,'totalPrice' => $totalPrice, 'totalQuantity' => $totalQuantity,]);
 
 

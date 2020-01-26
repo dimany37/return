@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'ProductController@products')->name('welcome');
+
 Route::get('/upload_file' ,'UploadController@getForm')->middleware('auth');
 Route::post('/upload_file' ,'UploadController@upload')->middleware('auth')->name('upload_file');
 Auth::routes();

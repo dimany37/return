@@ -46,4 +46,19 @@ class Carta extends Model
 
         return $totalQuantity;
     }
+    public static function delQnt($id)// вот с этим разберись унгу, я про это же
+    {
+        $product_id = request()->id;
+        $carta = Carta::with('products')->where('id', $id)->where('product_id', $product_id)->first();
+
+
+
+        $quantity = $carta->pivot->quantity-1;
+            //dd($quantity);
+
+            //$totalQuantity += $quantity;
+        }
+
+       // return $totalQuantity;
+
 }

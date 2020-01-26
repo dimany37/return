@@ -68,7 +68,7 @@
 <body>
 
       <div id="cart">
-          @if(isset($carta))
+          @if(isset($carta) && $totalPrice > 0 )
               @foreach($carta->products as $product)
                   <p>название <span>{{$product->name}}=</span></p>
                   <p>стоимость <span>{{$product->price}}</span></p>
@@ -82,7 +82,7 @@
                   <p>Количество товаров <span>{{$totalQuantity}}</span></p>
                   <p>ОБщая стоимость <span>{{$totalPrice}}</span></p>
               @else
-              echo('нет товаров')
+              <h1>нет товаров</h1> <a href="{{route('welcome')}}"> HOME</a>
             @endif
       </div>
       <script
