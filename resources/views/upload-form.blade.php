@@ -17,6 +17,7 @@
             <label>ОПисание</label><input type="text" name="description"><br>
             <label>Цена</label><input type="text"name="price" ><br>
             <label>Изображение</label><input type="file" multiple name="file[]">
+            <label>категория</label><input type="text"name="category_id" ><br>
             <button type="submit">Загрузить</button><br>
 
         </form>

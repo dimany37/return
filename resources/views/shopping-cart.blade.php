@@ -77,7 +77,9 @@
                   @foreach($product->images as $image)
                       <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100"></p>
                   @endforeach
+
                       <button type="submit" onclick='del({{$product->id}},{{$product->pivot->quantity}})'>Удалить</button><br>
+
               @endforeach
                   <p>Количество товаров <span>{{$totalQuantity}}</span></p>
                   <p>ОБщая стоимость <span>{{$totalPrice}}</span></p>
@@ -106,4 +108,11 @@
           }
         //  });
       </script>
+
+      <form method="post" action="{{ route('checkout') }}" enctype="multipart/form-data">
+
+          @csrf
+          <button type="submit">оформить заказ</button><br>
+          <input type="hidden" value="{{$carta_id}}" name="checkout">
+      </form>
 </body>

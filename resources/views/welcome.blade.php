@@ -98,28 +98,30 @@
                     Return1
                 </div>
 <div>
-    @if(isset($products))
-        @foreach($products as $product)
-            <table border="1">
-                <tr>
-                    <td>Наименование: <span>{{$product->name}}</span></td>
-                    <td>Цена: <span>{{$product->price}}</span></td>
+   @if(isset($products))//в общем это коллекция
 
-            <p>Наименование: <span>{{$product->name}}</span></p>
-            <p>Цена: <span>{{$product->price}}</span>
-            @foreach($product->images as $image)
-                        <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100" ></a></td>
-                <td>
-                    <form action="{{ route('AddToCort') }}" method="post">
-                        @csrf
-                        <input type="hidden" value="{{$product->id}}" name="product">
-                        <p>количество<span><input  name="quantity"></span></p>
+            @foreach($products as $product)
+                <table border="1">
+                    <tr>
+                        <td>Наименование: <span>{{$product->name}}</span></td>
+                        <td>Цена: <span>{{$product->price}}</span></td>
 
-                        <button type="submit" id = "button" >Добавить в корзину</button>
-                    </form></td>
-                </tr>
-                </table>
-            @endforeach
+                <p>Наименование: <span>{{$product->name}}</span></p>
+                <p>Цена: <span>{{$product->price}}</span>
+                @foreach($product->images as $image)
+                            <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100" ></a></td>
+                    <td>
+                        <form action="{{ route('AddToCort') }}" method="post">
+                            @csrf
+                            <input type="hidden" value="{{$product->id}}" name="product">
+                            <p>количество<span><input  name="quantity"></span></p>
+
+                            <button type="submit" id = "button" >Добавить в корзину</button>
+                        </form></td>
+                    </tr>
+                    </table>
+                @endforeach
+
         @endforeach
     @endif
                 </div>
