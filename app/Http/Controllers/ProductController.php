@@ -17,10 +17,12 @@ class ProductController extends Controller
     {
        //$category = Category::with('products')->where('category_id', 1)->get();
        // $carta = Carta::with('products')->where('id', $carta_id)->first();
-       //$id = 1;
-       //$products =Category::with('products')->where('id',$id)->first();
+       $id = 2;
+       $products = Category::find(1);
+
+       //$products =Category::with('products')->where('')->first();dd(products);
         //@foreach($products->products as $product)
-      $products = Product::with('images')->get();
+      //$products = Product::with('images')->get();
        //dd($products);
         //if (Session:: has('totalprice')){
         Session:: has('carta_id')?$totalPrice = Carta::getTotalPrice(session('carta_id')):$totalPrice =0;// так короче вызов .....что еще?ничё буду переваритваьт. ты читер спасибо...да ты тож вырос уже))
@@ -81,7 +83,7 @@ else
       //  $contents = view('welcome',compact('TotalQuantity','TotalPrice', 'products' ));
        // return ['html'=>$contents->render()];
         $id = 1;
-      //  $products =Category::with('products')->where('id',$id)->first();
+        $products =Category::with('products')->where('id',$id)->first();
        return view('welcome', ['products' => $products,'TotalQuantity' => $TotalQuantity,'TotalPrice' => $TotalPrice, 'carta_id'=>$carta_id]);
        // return view('welcome', ['products' => $products],['TotalQuantity' => $TotalQuantity]);
 }

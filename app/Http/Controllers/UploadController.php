@@ -5,6 +5,7 @@
 
     use App\Image;
     use App\Product;
+    use App\Category;
 
     class UploadController extends Controller
     {
@@ -44,7 +45,8 @@
             $product->price = $request->price;
             $product->category_id = $request->category_id;
             $product->save();
-
+            $category = Category::find($request->category_id);
+            $product->category()->attach($category);
             return $product->id;
         }
 

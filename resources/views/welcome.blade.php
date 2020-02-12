@@ -100,7 +100,7 @@
 <div>
    @if(isset($products))//в общем это коллекция
 
-            @foreach($products as $product)
+            @foreach($products->products as $product)
                 <table border="1">
                     <tr>
                         <td>Наименование: <span>{{$product->name}}</span></td>
