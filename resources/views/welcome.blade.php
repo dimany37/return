@@ -98,7 +98,10 @@
                     Return1
                 </div>
 <div>
-   @if(isset($products))//в общем это коллекция
+    @foreach($categories as $category)
+        <td><a href="http://return/category/{{$category->id}}">{{$category->name}}</a></td>
+    @endforeach
+   @if(isset($products))
 
             @foreach($products->products as $product)
                 <table border="1">
@@ -106,7 +109,7 @@
                         <td>Наименование: <span>{{$product->name}}</span></td>
                         <td>Цена: <span>{{$product->price}}</span></td>
 
-                <p>Наименование: <span>{{$product->name}}</span></p>
+                <p> <span>{{$product->name}}</span></p>
                 <p>Цена: <span>{{$product->price}}</span>
                 @foreach($product->images as $image)
                             <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100" ></a></td>
@@ -124,6 +127,7 @@
 
         @endforeach
     @endif
+
                 </div>
                 <div class="links">
                     <a href="{{ url('/upload_file') }}">Загрузка файлов</a>

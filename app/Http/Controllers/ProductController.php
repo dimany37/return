@@ -18,17 +18,19 @@ class ProductController extends Controller
        //$category = Category::with('products')->where('category_id', 1)->get();
        // $carta = Carta::with('products')->where('id', $carta_id)->first();
        $id = 2;
-       $products = Category::find(1);
+       $categories = Category::get();
+       $products = Category::with('products')->first();
+       //dd($products);//тут колекция на нее продуктс  ytн аботает в=а что тогда, all?
 
-       //$products =Category::with('products')->where('')->first();dd(products);
+      // $products =Category::with('products')->where('id', $id)->first();dd(products);
         //@foreach($products->products as $product)
-      //$products = Product::with('images')->get();
+      //$products = Category::with('products')->get();
        //dd($products);
         //if (Session:: has('totalprice')){
         Session:: has('carta_id')?$totalPrice = Carta::getTotalPrice(session('carta_id')):$totalPrice =0;// так короче вызов .....что еще?ничё буду переваритваьт. ты читер спасибо...да ты тож вырос уже))
         Session:: has('carta_id')?$totalQuantity = Carta::getTotalQuantity(session('carta_id')):$totalQuantity =0;
      // dd($totalQuantity);
-        return view('welcome', ['products' => $products,'TotalPrice' => $totalPrice, 'TotalQuantity' => $totalQuantity]);
+        return view('welcome', ['products' => $products,'TotalPrice' => $totalPrice, 'TotalQuantity' => $totalQuantity, 'categories' =>$categories]);
         }
 
 
@@ -41,9 +43,18 @@ class ProductController extends Controller
 
         }
     }
+    public function categorysite($id)
+    {
+        {
+            $products = Category::with('products')->where('id', $id)->first();
+
+            return view('category', ['products' => $products]);
+
+        }
+    }
     public function AddToCort()
     {
-
+        $categories = Category::get();
         //dd($TotalPrice);
         if (!Session:: has('carta_id')) {
             $carta = new Carta;
@@ -84,7 +95,7 @@ else
        // return ['html'=>$contents->render()];
         $id = 1;
         $products =Category::with('products')->where('id',$id)->first();
-       return view('welcome', ['products' => $products,'TotalQuantity' => $TotalQuantity,'TotalPrice' => $TotalPrice, 'carta_id'=>$carta_id]);
+       return view('welcome', ['products' => $products,'TotalQuantity' => $TotalQuantity,'TotalPrice' => $TotalPrice, 'carta_id'=>$carta_id, 'categories' =>$categories]);
        // return view('welcome', ['products' => $products],['TotalQuantity' => $TotalQuantity]);
 }
 

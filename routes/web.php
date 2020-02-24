@@ -21,9 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/AddToCart', 'ProductController@AddToCart')->name('AddToCart');
 Route::post('/AddToCort', 'ProductController@AddToCort')->name('AddToCort');
 Route::get('/products/{id}', 'ProductController@productsite')->name('product');
+Route::get('/category/{id}', 'ProductController@categorysite')->name('category');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
+Route::post('/payment', 'PaymentController@pay')->name('pay');
 
 Route::get('/shopping-cart', 'ProductController@getCart')->name('shopping-cart');
 
 Route::post('/shopping-cart', 'ProductController@delete')->name('delete');
 Route::post('/checkout', 'ProductController@checkout')->name('checkout');
+
