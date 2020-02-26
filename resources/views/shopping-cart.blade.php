@@ -115,59 +115,61 @@
           <button type="submit">оформить заказ</button><br>
           <input type="hidden" value="{{$carta_id}}" name="checkout">
       </form>
-      <form method="post" action="{{ route('pay') }}" enctype="multipart/form-data">
-
-          @csrf
-          <button type="submit" id = "pay">Оформить и оплатить онлайн </button><br>
-          <input type="hidden" value="{{$carta_id}}" name="checkout">
-      </form>
       <script
               src="https://code.jquery.com/jquery-3.4.1.js"
               integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
               crossorigin="anonymous"></script>
       <script>
-          // $(document).ready(function() {
-          function pay() {
+          $(document).ready(function() {
               $('#pay').on('click', function () {
-              //let token = $('meta[name="csrf-token"]').attr('content');
-              $.post("https://checkout.bepaid.by/ctp/api/checkouts", {
-                  "checkout": {
-                      "version": 2.1,
-                      "test": true,
-                      "transaction_type": "payment",
-                      "attempts": 3,
-                      "settings": {
-                          "success_url": "http://127.0.0.1:4567/success",
-                          "decline_url": "http://127.0.0.1:4567/decline",
-                          "fail_url": "http://127.0.0.1:4567/fail",
-                          "cancel_url": "http://127.0.0.1:4567/cancel",
-                          "notification_url": "http://your_shop.com/notification",
-                          "button_text": "Привязать карту",
-                          "button_next_text": "Вернуться в магазин",
-                          "language": "en",
-                          "customer_fields" : {
-                              "visible" : ["first_name", "last_name"],
-                              "read_only" : ["email"]
+
+                  $.post("https://checkout.bepaid.by/ctp/api/checkouts",{
+                          "checkout": {
+                              "version": 2.1,
+                              "test": true,
+                              "transaction_type": "payment",
+                              "attempts": 3,
+                              "settings": {
+                                  "success_url": "http://127.0.0.1:4567/success",
+                                  "decline_url": "http://127.0.0.1:4567/decline",
+                                  "fail_url": "http://127.0.0.1:4567/fail",
+                                  "cancel_url": "http://127.0.0.1:4567/cancel",
+                                  "notification_url": "http://your_shop.com/notification",
+                                  "button_text": "Привязать карту",
+                                  "button_next_text": "Вернуться в магазин",
+                                  "language": "en",
+                                  "customer_fields": {
+                                      "visible": ["first_name", "last_name"],
+                                      "read_only": ["email"]
+                                  }
+                              },
+                              "order": {
+                                  "currency": "GBP",
+                                  "amount":"{{$totalPrice}}",
+                                  "description": "Order description"
+                              },
+                              "customer": {
+                                  "address": "Baker street 221b",
+                                  "country": "GB",
+                                  "city": "London",
+                                  "email": "jake@example.com"
+                              }
                           }
                       },
-                      "order": {
-                          "currency": "GBP",
-                          "amount": '{{$totalPrice}}',
-                          "description": "Order description"
-                      },
-                      "customer": {
-                          "address": "Baker street 221b",
-                          "country": "GB",
-                          "city": "London",
-                          "email": "jake@example.com"
-                      }
-                  }
-              }
-                  function (data) {
-                      ('#cart').html(data.html);
-                  };
-              //  });
-          }
+                      function (data) {
+                          alert(data);
+
+                          console.log(data.request.token);
+                          console.log(data.request.redirect_url);
+                          alert('xuy')
+                      })
+              })
+          })
           //  });
       </script>
+
+          <button type="button" id = "pay" >Оформить и оплатить онлайн </button><br>
+
+
+
 </body>
