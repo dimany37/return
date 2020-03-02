@@ -151,6 +151,7 @@ else
         $order->save();
         //dd($order);
         request()->session()->flash('carta_id', $carta_id);
+
         // $order = Order::firstOrCreate(['carta_id' => $carta_id]);
         //dd($order);
         $carta = Carta::with('products')->where('id', $carta_id)->first();
@@ -158,6 +159,7 @@ else
 
 
         $totalPrice = Carta::getTotalPrice($carta_id);
+        request()->session()->put('totalPrice', $totalPrice);
         $totalQuantity = Carta::getTotalQuantity($carta_id);
         //$products_checkout = Carta::with('products')->where('id', $carta_id)->first();
         //$products_checkout = Order::find(1)->cartas()->where (`id`,$carta_id)->first();

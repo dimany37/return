@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e80c715c050fc1aa18dd4c19e894e499",
+    "content-hash": "c558604a8495b2f68393a917413a8d15",
     "packages": [
+        {
+            "name": "begateway/begateway-api-php",
+            "version": "4.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/begateway/begateway-api-php.git",
+                "reference": "6b608f18f7c44771233a15fb502e4a2d429599b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/begateway/begateway-api-php/zipball/6b608f18f7c44771233a15fb502e4a2d429599b9",
+                "reference": "6b608f18f7c44771233a15fb502e4a2d429599b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">= 5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BeGateway\\": "lib/BeGateway"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "BeGateway",
+                    "email": "admin@begateway.com"
+                }
+            ],
+            "description": "BeGateway PHP API library",
+            "keywords": [
+                "api",
+                "begateway",
+                "bepaid",
+                "payment processing"
+            ],
+            "time": "2019-03-04T07:09:59+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

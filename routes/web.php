@@ -23,7 +23,9 @@ Route::post('/AddToCort', 'ProductController@AddToCort')->name('AddToCort');
 Route::get('/products/{id}', 'ProductController@productsite')->name('product');
 Route::get('/category/{id}', 'ProductController@categorysite')->name('category');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
-Route::post('/payment', 'PaymentController@pay')->name('pay');
+Route::post('/payment', 'PaymentController@pay');
+
+Route::get('/payment', 'PaymentController@pay')->name('pay');
 
 Route::get('/shopping-cart', 'ProductController@getCart')->name('shopping-cart');
 

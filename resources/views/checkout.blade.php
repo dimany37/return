@@ -86,6 +86,7 @@
     @else
         <h1>нет товаров</h1> <a href="{{route('welcome')}}"> HOME</a>
     @endif
+    <a href="http://{{$response->getRedirectUrl()}}">оплатить счаз</a>
 </div>
 
 

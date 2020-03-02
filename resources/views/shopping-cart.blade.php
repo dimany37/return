@@ -115,6 +115,9 @@
           <button type="submit">оформить заказ</button><br>
           <input type="hidden" value="{{$carta_id}}" name="checkout">
       </form>
+
+
+
       <script
               src="https://code.jquery.com/jquery-3.4.1.js"
               integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -123,7 +126,7 @@
           $(document).ready(function() {
               $('#pay').on('click', function () {
 
-                  $.post("https://checkout.bepaid.by/ctp/api/checkouts",{
+                  $.post("https://checkout.begateway.com/ctp/api/checkouts" ,{
                           "checkout": {
                               "version": 2.1,
                               "test": true,
@@ -169,6 +172,8 @@
       </script>
 
           <button type="button" id = "pay" >Оформить и оплатить онлайн </button><br>
+
+      <form action ="{{ route('pay') }}"><button type="button">Оплатить онлайн</button></form>
 
 
 
