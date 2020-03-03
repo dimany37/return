@@ -126,7 +126,7 @@
           $(document).ready(function() {
               $('#pay').on('click', function () {
 
-                  $.post("https://checkout.begateway.com/ctp/api/checkouts" ,{
+                  $.get("{{route('pay')}}" ,{
                           "checkout": {
                               "version": 2.1,
                               "test": true,

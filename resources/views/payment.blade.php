@@ -71,6 +71,8 @@
 
         <h1>ЗАКАЗ ОФОРМЛЕН</h1> <a href="{{route('welcome')}}"> HOME</a>
 
+
+
         <h1>нет товаров</h1> <a href="{{route('welcome')}}"> HOME</a>
 
 </div>

@@ -18,7 +18,7 @@ Route::post('/upload_file' ,'UploadController@upload')->middleware('auth')->name
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/AddToCart', 'ProductController@AddToCart')->name('AddToCart');
+
 Route::post('/AddToCort', 'ProductController@AddToCort')->name('AddToCort');
 Route::get('/products/{id}', 'ProductController@productsite')->name('product');
 Route::get('/category/{id}', 'ProductController@categorysite')->name('category');

@@ -32,7 +32,7 @@ class PaymentController extends Controller
         $transaction->money->setAmount($amount);
         $transaction->money->setCurrency('BYN');//евро
         $transaction->setDescription('test');
-        $transaction->setTrackingId('my_custom_variable');
+        $transaction->setTrackingId = request()->session()->get('totalPrice');
         $transaction->setLanguage('rus');
 
         $transaction->setTestMode(true);
@@ -65,11 +65,13 @@ class PaymentController extends Controller
           //  print("Token: " . $response->getToken() . PHP_EOL);
 
         }
-        //return $response->getRedirectUrl();
-        $paysite = $response->getRedirectUrl();
-        dd($paysite);
-        request()->session()->put('paysite',$paysite);
-        dd(request()->session()->paysite);
+       // return $response->getRedirectUrl();
+        $url = $response->getRedirectUrl();
+        return redirect()->to($url);
+       // dd(redirect()->to($url));
+        //dd($paysite);
+        //request()->session()->put('paysite',$paysite);
+        //dd(request()->session()->paysite);
        // dd($response->getRedirectUrl());
         //return view('payment');
     }

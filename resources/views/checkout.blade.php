@@ -83,10 +83,49 @@
         <p>Количество товаров <span>{{$totalQuantity}}</span></p>
         <p>ОБщая стоимость <span>{{$totalPrice}}</span></p>
             <h1>ЗАКАЗ ОФОРМЛЕН</h1> <a href="{{route('welcome')}}"> HOME</a>
+
+            <script
+                    src="https://code.jquery.com/jquery-3.4.1.js"
+                    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                    crossorigin="anonymous"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#pay').on('click', function () {
+
+                        $.get("{{route('pay')}}" ,{
+                                "checkout": {
+
+                                    },
+                                    "order": {
+                                        "currency": "GBP",
+                                        "amount":"{{$totalPrice}}",
+                                        "description": "Order description"
+                                    },
+                                    "customer": {
+                                        "address": "Baker street 221b",
+                                        "country": "GB",
+                                        "city": "London",
+                                        "email": "jake@example.com"
+                                    }
+                                }
+                            },
+                            function (data) {
+                                alert(data);
+
+                            })
+                    })
+                })
+                //  });
+            </script>
+
+            <button type="button" id = "pay" >Оформить и оплатить онлайн </button><br>
+
+
+
     @else
         <h1>нет товаров</h1> <a href="{{route('welcome')}}"> HOME</a>
     @endif
-    <a href="http://{{$response->getRedirectUrl()}}">оплатить счаз</a>
+
 </div>
 
 
