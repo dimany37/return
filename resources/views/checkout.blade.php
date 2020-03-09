@@ -107,14 +107,14 @@
                                         "city": "London",
                                         "email": "jake@example.com"
                                     }
-                                }
-                            },
+                                                            },
                             function (data) {
-                                alert(data);
+                                window.location.href = data;
 
                             })
                     })
                 })
+
                 //  });
             </script>
 

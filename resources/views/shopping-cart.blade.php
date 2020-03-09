@@ -118,62 +118,7 @@
 
 
 
-      <script
-              src="https://code.jquery.com/jquery-3.4.1.js"
-              integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-              crossorigin="anonymous"></script>
-      <script>
-          $(document).ready(function() {
-              $('#pay').on('click', function () {
 
-                  $.get("{{route('pay')}}" ,{
-                          "checkout": {
-                              "version": 2.1,
-                              "test": true,
-                              "transaction_type": "payment",
-                              "attempts": 3,
-                              "settings": {
-                                  "success_url": "http://127.0.0.1:4567/success",
-                                  "decline_url": "http://127.0.0.1:4567/decline",
-                                  "fail_url": "http://127.0.0.1:4567/fail",
-                                  "cancel_url": "http://127.0.0.1:4567/cancel",
-                                  "notification_url": "http://your_shop.com/notification",
-                                  "button_text": "Привязать карту",
-                                  "button_next_text": "Вернуться в магазин",
-                                  "language": "en",
-                                  "customer_fields": {
-                                      "visible": ["first_name", "last_name"],
-                                      "read_only": ["email"]
-                                  }
-                              },
-                              "order": {
-                                  "currency": "GBP",
-                                  "amount":"{{$totalPrice}}",
-                                  "description": "Order description"
-                              },
-                              "customer": {
-                                  "address": "Baker street 221b",
-                                  "country": "GB",
-                                  "city": "London",
-                                  "email": "jake@example.com"
-                              }
-                          }
-                      },
-                      function (data) {
-                          alert(data);
-
-                          console.log(data.request.token);
-                          console.log(data.request.redirect_url);
-                          alert('xuy')
-                      })
-              })
-          })
-          //  });
-      </script>
-
-          <button type="button" id = "pay" >Оформить и оплатить онлайн </button><br>
-
-      <form action ="{{ route('pay') }}"><button type="button">Оплатить онлайн</button></form>
 
 
 
