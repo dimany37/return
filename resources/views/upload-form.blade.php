@@ -27,6 +27,14 @@
             <p>Наименование: <span>{{$product->name}}</span></p>
                 <p>Цена: <span>{{$product->price}}</span>
 
+                    <p>Категория <span>{{$product->category_id}}</span>
+
+                    <form method="post" action="{{ route('edit') }}" >
+                        @csrf
+                        <input type="hidden" value="{{$product->id}}" name="product_id">
+                    <label></label><input type="text" name="category_id" >
+            <button type="submit">Изменить категорию</button><br>
+                    </form>
                 @foreach($product->images as $image)
                 <p>Изображение: <img src="{{ asset('storage/images/'.$image->img)}}"></p>
 

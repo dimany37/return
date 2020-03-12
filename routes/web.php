@@ -15,6 +15,7 @@ Route::get('/', 'ProductController@products')->name('welcome');
 
 Route::get('/upload_file' ,'UploadController@getForm')->middleware('auth');
 Route::post('/upload_file' ,'UploadController@upload')->middleware('auth')->name('upload_file');
+Route::post('/edit' ,'UploadController@edit')->middleware('auth')->name('edit');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

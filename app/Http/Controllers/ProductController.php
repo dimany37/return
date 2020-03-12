@@ -27,6 +27,9 @@ class ProductController extends Controller
         {
             $product = Product::with('images')->where('id', $id)->first();
 
+
+
+
             return view('product', ['product' => $product]);
         }
     }
@@ -81,6 +84,9 @@ else
             $html = view('template.cart',compact('carta','totalPrice','totalQuantity'))->render();
         return compact('html', 'totalPrice', 'totalQuantity');
     }
+
+
+
    public function getCart(){
        $carta = null;
        $totalPrice = $totalQuantity = 0;

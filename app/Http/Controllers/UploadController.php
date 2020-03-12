@@ -31,6 +31,7 @@
             }
             $products = Product::with('images')->get();
 
+
             return view('upload-form',['products' => $products ]);        }
 
 
@@ -50,4 +51,14 @@
             return $product->id;
         }
 
+        public function edit(Request $request)
+        {
+            $product = Product::where('id', request()->product_id)->first();
+//dd(request());
+            $product->category_id = $request->category_id;
+
+            $category = Category::find($request->category_id);
+            $product->category()->attach($category);
+            return view('upload-form',['products' => $product ]);
+        }
     }
