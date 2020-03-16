@@ -56,9 +56,11 @@
             $product = Product::where('id', request()->product_id)->first();
 //dd(request());
             $product->category_id = $request->category_id;
-
-            $category = Category::find($request->category_id);
-            $product->category()->attach($category);
-            return view('upload-form',['products' => $product ]);
+         //   dd($request->category_id);
+           // $category = Category::find($request->category_id);
+            $product->category()->attach($request->category_id);
+            $products = Product::with('images')->get();
+            return redirect()->to('/upload_file');
+           // return view('upload-form',['products' => $products ]);
         }
     }
