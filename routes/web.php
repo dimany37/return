@@ -33,3 +33,6 @@ Route::get('/shopping-cart', 'ProductController@getCart')->name('shopping-cart')
 Route::post('/shopping-cart', 'ProductController@delete')->name('delete');
 Route::post('/checkout', 'ProductController@checkout')->name('checkout');
 
+
+Route::get('/upload_news' ,'UploadController@getNews')->middleware('auth')->name('getNews');
+Route::post('/upload_news' ,'UploadController@uploadNews')->middleware('auth')->name('uploadNews');
