@@ -9,6 +9,8 @@
     use App\News;
     use App\Author;
     use App\Heading;
+    use App\tabel;
+    use App\Sotrudnik;
 
     class UploadController extends Controller
     {
@@ -89,5 +91,22 @@
         {
             $news = News::get();
             return view('upload_news', ['news' => $news]);
+        }
+
+
+        public function uploadTabel(Request $request){
+            $tabel = New tabel;
+            $tabel->name = $request->fio;
+            $tabel->tabel = $request->tabel;
+            $tabel->save();
+            return redirect()->to('/tabel');
+        }
+
+
+        public function getTabel()
+        {
+            $tabels = tabel::get();
+            return view('tabel', ['tabels' => $tabels]);
+
         }
     }

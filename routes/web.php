@@ -36,3 +36,6 @@ Route::post('/checkout', 'ProductController@checkout')->name('checkout');
 
 Route::get('/upload_news' ,'UploadController@getNews')->middleware('auth')->name('getNews');
 Route::post('/upload_news' ,'UploadController@uploadNews')->middleware('auth')->name('uploadNews');
+
+Route::get('/tabel' ,'UploadController@getTabel')->middleware('auth')->name('getTabel');
+Route::post('/tabel' ,'UploadController@uploadTabel')->middleware('auth')->name('uploadTabel');
