@@ -1,3 +1,7 @@
+@extends('layouts.layout-temlate')
+@include('template.header')
+
+@section('content')
 <div>
 @foreach($products->products as $product)
     <p>Наименование: <span>{{$product->name}}</span></p>
@@ -8,3 +12,4 @@
         @endforeach
         <a href="{{route('welcome')}}"> HOME</a>
 </div>
+@endsection

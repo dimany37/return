@@ -28,7 +28,7 @@ Route::post('/payment', 'PaymentController@pay');
 
 Route::get('/payment', 'PaymentController@pay')->name('pay');
 
-Route::get('/shopping-cart', 'ProductController@getCart')->name('shopping-cart');
+Route::get('/shopping-cart', 'ProductController@shoppingCart')->name('shopping-cart');
 
 Route::post('/shopping-cart', 'ProductController@delete')->name('delete');
 Route::post('/checkout', 'ProductController@checkout')->name('checkout');

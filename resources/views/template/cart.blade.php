@@ -1,3 +1,4 @@
+
 @if(isset($carta) && $totalQuantity > 0)
               @foreach($carta->products as $product)
                   <p>название <span>{{$product->name}}=</span></p>

@@ -1,139 +1,322 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.layout-temlate')
+@include('template.header',['cart' => $cart])
+                @section('content')
+                    <section id="slide-show">
+                        <div id="slider" class="sl-slider-wrapper">
 
-        <title>Laravel</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}"
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+                            <!--Slider Items-->
+                            <div class="sl-slider">
+                                <!--Slider Item1-->
+                                <div class="sl-slide item1" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+                                    <div class="sl-slide-inner">
+                                        <div class="container">
+                                            <img class="pull-right" src="images/sample/slider/img1.png" alt="" />
+                                            <h2>Creative Ideas</h2>
+                                            <h3 class="gap">Tincidunt condimentum eros</h3>
+                                            <a class="btn btn-large btn-transparent" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/Slider Item1-->
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+                                <!--Slider Item2-->
+                                <div class="sl-slide item2" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+                                    <div class="sl-slide-inner">
+                                        <div class="container">
+                                            <img class="pull-right" src="images/sample/slider/img2.png" alt="" />
+                                            <h2>Planning &amp; Analysis</h2>
+                                            <h3 class="gap">Aenean ultricies mi vitast</h3>
+                                            <a class="btn btn-large btn-transparent" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Slider Item2-->
 
-            .full-height {
-                height: 100vh;
-            }
+                                <!--Slider Item3-->
+                                <div class="sl-slide item3" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+                                    <div class="sl-slide-inner">
+                                        <div class="container">
+                                            <img class="pull-right" src="images/sample/slider/img3.png" alt="" />
+                                            <h2>Unique Solutions</h2>
+                                            <h3 class="gap">Breatures who have been utterly</h3>
+                                            <a class="btn btn-large btn-transparent" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Slider Item3-->
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                            </div>
+                            <!--/Slider Items-->
 
-            .position-ref {
-                position: relative;
-            }
+                            <!--Slider Next Prev button-->
+                            <nav id="nav-arrows" class="nav-arrows">
+                                <span class="nav-arrow-prev"><i class="icon-angle-left"></i></span>
+                                <span class="nav-arrow-next"><i class="icon-angle-right"></i></span>
+                            </nav>
+                            <!--/Slider Next Prev button-->
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+                        </div>
+                        <!-- /slider-wrapper -->
 
-            .content {
-                text-align: center;
-            }
+                    </section>
+                    <!--/Slider-->
 
-            .title {
-                font-size: 84px;
-            }
+                    <section class="main-info">
+                        <div class="container">
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                            <div class="row-fluid">
+                                <div class="span9">
+                                    <h4>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</h4>
+                                    <p class="no-margin">Tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet</p>
+                                </div>
+                                <div class="span3">
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-                        @if (Route::has('login'))
-                <div class="top-right links">
-                    <div><a href="{{ route('shopping-cart') }}"> <i class="fa fa-shopping-cart" aria-hidden="true">В корзине <div class="badge" id = "ttq"></div>товаров
-                                на сумму <span class="badge" id = "ttp">{{$TotalPrice}}</span>рублей</i></a></div>
-                    <script>
-                        $(document).ready(function(){
-                            $('#button').on('click',function(data){
-                                $('#ttq').text("Режим посчитан!");
-                            });
-                        });
-                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!--Services-->
+                    <section id="services">
 
 
-                    <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Return1
-                </div>
+                        <div class="gap"></div>
+
+                        <div class="row-fluid">
+                            <div class="span4">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <i class="icon-shopping-cart icon-medium"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="span4">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <i class="icon-globe icon-medium"></i>
+                                    </div>
+                                    <div class="media-body">
+
+                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+                    </section>
+                    <!--/Services-->
+
+                    <section id="recent-works">
+                        <div class="container">
+                            <div class="center">
+                                <h3>Our Recent Works</h3>
+                                <p class="lead">Look at some of the recent projects we have completed for our valuble clients</p>
+                            </div>
+                            <div class="gap"></div>
+                            <ul class="gallery col-4">
+                                <!--Item 1-->
+                                <li>
+                                    <div class="preview">
+                                        <img alt=" " src="images/portfolio/thumb/item1.jpg">
+                                        <div class="overlay">
+                                        </div>
+                                        <div class="links">
+                                            <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="desc">
+                                        <h5>Lorem ipsum dolor sit amet</h5>
+                                    </div>
+                                    <div id="modal-1" class="modal hide fade">
+                                        <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                                        <div class="modal-body">
+                                            <img src="images/portfolio/full/item1.jpg" alt=" " width="100%" style="max-height:400px">
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--/Item 1-->
+
+                                <!--Item 2-->
+                                <li>
+                                    <div class="preview">
+                                        <img alt=" " src="images/portfolio/thumb/item2.jpg">
+                                        <div class="overlay">
+                                        </div>
+                                        <div class="links">
+                                            <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="desc">
+                                        <h5>Lorem ipsum dolor sit amet</h5>
+                                    </div>
+                                    <div id="modal-1" class="modal hide fade">
+                                        <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                                        <div class="modal-body">
+                                            <img src="images/portfolio/full/item2.jpg" alt=" " width="100%" style="max-height:400px">
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--/Item 2-->
+
+                                <!--Item 3-->
+                                <li>
+                                    <div class="preview">
+                                        <img alt=" " src="images/portfolio/thumb/item3.jpg">
+                                        <div class="overlay">
+                                        </div>
+                                        <div class="links">
+                                            <a data-toggle="modal" href="#modal-3"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="desc">
+                                        <h5>Lorem ipsum dolor sit amet</h5>
+                                    </div>
+                                    <div id="modal-3" class="modal hide fade">
+                                        <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                                        <div class="modal-body">
+                                            <img src="images/portfolio/full/item3.jpg" alt=" " width="100%" style="max-height:400px">
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--/Item 3-->
+
+                                <!--Item 4-->
+                                <li>
+                                    <div class="preview">
+                                        <img alt=" " src="images/portfolio/thumb/item4.jpg">
+                                        <div class="overlay">
+                                        </div>
+                                        <div class="links">
+                                            <a data-toggle="modal" href="#modal-4"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="desc">
+                                        <h5>Lorem ipsum dolor sit amet</h5>
+                                    </div>
+                                    <div id="modal-4" class="modal hide fade">
+                                        <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                                        <div class="modal-body">
+                                            <img src="images/portfolio/full/item4.jpg" alt=" " width="100%" style="max-height:400px">
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--/Item 4-->
+
+                            </ul>
+                        </div>
+
+                    </section>
+
+                    <section id="clients" class="main">
+                        <div class="container">
+                            <div class="row-fluid">
+                                <div class="span2">
+                                    <div class="clearfix">
+                                        <h4 class="pull-left">OUR PARTNERS</h4>
+                                        <div class="pull-right">
+                                            <a class="prev" href="#myCarousel" data-slide="prev"><i class="icon-angle-left icon-large"></i></a> <a class="next" href="#myCarousel" data-slide="next"><i class="icon-angle-right icon-large"></i></a>
+                                        </div>
+                                    </div>
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                </div>
+                                <div class="span10">
+                                    <div id="myCarousel" class="carousel slide clients">
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner">
+                                            <div class="active item">
+                                                <div class="row-fluid">
+                                                    <ul class="thumbnails">
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client1.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client2.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client3.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client4.png"></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="row-fluid">
+                                                    <ul class="thumbnails">
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client4.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client3.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client2.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client1.png"></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="row-fluid">
+                                                    <ul class="thumbnails">
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client1.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client2.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client3.png"></a></li>
+                                                        <li class="span3"><a href="#"><img src="images/sample/clients/client4.png"></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Carousel items -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!--Bottom-->
+                    <section id="bottom" class="main">
+                        <!--Container-->
+                        <div class="container">
+
+                            <!--row-fluids-->
+                            <div class="row-fluid">
+
+
+
+                            </div>
+                            <!--/container-->
+                        </div>
+                    </section>
 <div>
     @foreach($categories as $category)
-        <td><a href="http://return/category/{{$category->id}}">{{$category->name}}</a></td>
+<ul>
+        <li><a href="http://return/category/{{$category->id}}">{{$category->name}}</a></li>
     @endforeach
    @if(isset($products))
 
             @foreach($products->products as $product)
-                <table border="1">
-                    <tr>
-                        <td>Наименование: <span>{{$product->name}}</span></td>
-                        <td>Цена: <span>{{$product->price}}</span></td>
+</ul>
+                    <ul>
+                        <li>Наименование: <span>{{$product->name}}</span></li>
+                        <li>Цена: <span>{{$product->price}}</span></li>
 
-                <p> <span>{{$product->name}}</span></p>
-                <p>Цена: <span>{{$product->price}}</span>
+
                 @foreach($product->images as $image)
                             <td><a href="http://return/products/{{$product->id}}"><img src="{{ asset('storage/images/'.$image->img)}}" width="100" height="100" ></a></td>
-                    <td>
+                    <li>
                         <form action="{{ route('AddToCort') }}" method="post">
                             @csrf
                             <input type="hidden" value="{{$product->id}}" name="product">
                             <p>количество<span><input  name="quantity"></span></p>
 
                             <button type="submit" id = "button" >Добавить в корзину</button>
-                        </form></td>
-                    </tr>
-                    </table>
+                        </form></li>
+                    </ul>
+
                 @endforeach
 
         @endforeach
     @endif
 
-                </div>
-                <div class="links">
-                    <a href="{{ url('/upload_file') }}">Загрузка файлов</a>
 
-                </div>
             </div>
         </div>
-    </body>
-</html>
+@endsection

@@ -1,3 +1,6 @@
+@extends('layouts.layout-temlate')
+@include('template.header',['cart' => $cart])
+
 <div>
 
     <p>Наименование: <span>{{$product->name}}</span></p>
@@ -9,5 +12,4 @@
         @endforeach
         <a href="{{route('welcome')}}"> HOME</a>
 </div>
-
 
