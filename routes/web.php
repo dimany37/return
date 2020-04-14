@@ -39,3 +39,6 @@ Route::post('/upload_news' ,'UploadController@uploadNews')->middleware('auth')->
 
 Route::get('/tabel' ,'UploadController@getTabel')->middleware('auth')->name('getTabel');
 Route::post('/tabel' ,'UploadController@uploadTabel')->middleware('auth')->name('uploadTabel');
+
+Route::get('/contact-us' , 'ProductController@contactUs')->name('contactUs');
+Route::post('/contact-us' , 'ProductController@sendUs')->name('sendUs');

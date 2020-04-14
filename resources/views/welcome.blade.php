@@ -319,4 +319,5 @@
 
             </div>
         </div>
+                    @include('template.footer')
 @endsection

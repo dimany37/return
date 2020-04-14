@@ -23,7 +23,6 @@ class ProductController extends Controller
        // dd($this->getCart());
        // dd(request()->session()->get('getCart'));
         $cart =$this->getCart();
-
         return view('welcome', ['products'=>$products,'totalQuantity'=>$totalQuantity,'totalPrice'=>$totalPrice,'categories'=>$categories, 'cart' =>$cart]);
             //compact('products','totalQuantity','totalPrice','categories','cart'));
         }
@@ -48,33 +47,24 @@ class ProductController extends Controller
     public function AddToCort()// ну вот...так же лучше читается?
     {
         $categories = Category::get();
-
         if (!Session:: has('carta_id')) {
-
             $carta = new Carta;
             $carta->save();
             request()->session()->put('carta_id', $carta->id);
         }
 
-        $carta_id = session('carta_id');
-        $carta = Carta::where('id' , $carta_id)->first();
+            $carta_id = session('carta_id');
+            $carta = Carta::where('id' , $carta_id)->first();
 
-        $product = request()->get('product');
-        
-        $product_cart = DB::table('carta_product')->where('carta_id','=', $carta_id)->get();
-
-        $contains_product = $product_cart->contains('product_id', $product);//
-
-        $quantity = abs(request()->quantity);
+            $product = request()->get('product');
+            $product_cart = DB::table('carta_product')->where('carta_id','=', $carta_id)->get();
+            $contains_product = $product_cart->contains('product_id', $product);//
+            $quantity = abs(request()->quantity);
 
         if ($contains_product == true) {
-
            DB:: table ('carta_product')->where([['carta_id', $carta_id],['product_id',$product]])->increment('quantity', $quantity);
-
         } else  {
-
-            $carta->products()->attach($product, ['quantity' => request()->quantity]);
-
+           $carta->products()->attach($product, ['quantity' => request()->quantity]);
         }
 
         $TotalPrice =Carta::getTotalPrice($carta_id);
@@ -146,6 +136,27 @@ class ProductController extends Controller
 
         return view('checkout', ['carta' => $carta, 'totalQuantity' => $totalQuantity, 'totalPrice' => $totalPrice]);
 
+    }
+
+    public function contactUs()
+    {
+            $cart =$this->getCart();
+            return view('contact-us', ['cart'=>$cart]);
+        }
+
+    public function sendUs(Request $request)
+    {
+        // Validate the request...
+
+        $letter = new Letter;
+        $letter->firstName = $request->firstName;
+        $letter->lastName = $request->lastName;
+        $letter->email = $request->email;
+        $letter->message = $request->message;
+        $letter->save();
+
+        return redirect()->to('/contact_us');
+        //return $news->id;
     }
 
 }

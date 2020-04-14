@@ -10,9 +10,8 @@
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav">
                     <li class="active"><a href="http://return">Home</a></li>
-                    <li><a href="about-us.html">О нас</a></li>
                     <li><a href="http://return/upload_file">Загрузка файлов</a></li>
-                    <li><a href="contact-us.html">Контакты</a></li>
+                    <li><a href="/contact-us">Контакты</a></li>
                     <li><a href="/upload_news">Новости</a></li>
  <li>  <a href="{{ route('shopping-cart') }}">
          <i class="fa fa-shopping-cart" aria-hidden="true">В корзине <div class="badge" id = "ttq">{{$cart['totalQuantity']}}

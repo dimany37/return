@@ -1,5 +1,6 @@
 @extends('layouts.layout-temlate')
-@include('template.header',['cart' => $cart])
+@include('template.header')
+@section('content')
 
 <div>
 
@@ -12,4 +13,4 @@
         @endforeach
         <a href="{{route('welcome')}}"> HOME</a>
 </div>
-
+@endsection
