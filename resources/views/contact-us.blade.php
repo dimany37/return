@@ -14,25 +14,24 @@
             <h4>Contact Form</h4>
             <div class="status alert alert-success" style="display: none"></div>
 
-            <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
+            <form  method="post" action="{{ route('sendUs') }}" enctype="multipart/form-data">
+            @csrf
                 <div class="row-fluid">
                     <div class="span5">
                         <label>First Name</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your First Name">
+                        <input type="text" class="input-block-level" required="required"  name="firstName">
                         <label>Last Name</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your Last Name">
+                        <input type="text" class="input-block-level" required="required"  name="lastName">
                         <label>Email Address</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your email address">
+                        <input type="text" class="input-block-level" required="required" name="email">
                     </div>
                     <div class="span7">
                         <label>Message</label>
-                        <textarea name="message" id="message" required="required" class="input-block-level" rows="8"></textarea>
+                        <textarea id="message" required="required" class="input-block-level" rows="8" name="message"></textarea>
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-primary btn-large pull-right">Send Message</button>
-                <p> </p>
-
+                <button type="submit" class="btn btn-primary btn-large pull-right" >Send Message</button>
             </form>
         </div>
 

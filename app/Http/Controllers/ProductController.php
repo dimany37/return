@@ -6,6 +6,8 @@ use App\Product;
 use App\Carta;
 use App\Category;
 use App\Order;
+use App\Letter;
+use Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use DB;
@@ -154,8 +156,11 @@ class ProductController extends Controller
         $letter->email = $request->email;
         $letter->message = $request->message;
         $letter->save();
-
-        return redirect()->to('/contact_us');
+        Mail::send([`text`,'mail'], ['name', 'return'], function ($message){
+            $message->to('dimany37@mail.ru', 'To efjfe')->subject('efeff');
+            $message->from ('dimany37@mail.ru', 'rrrgg');
+        });
+        return redirect()->to('/contact-us');
         //return $news->id;
     }
 

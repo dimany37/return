@@ -12,6 +12,7 @@
         "begateway/begateway-api-php": "^4.2",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0"
     },

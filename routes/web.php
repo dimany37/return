@@ -42,3 +42,4 @@ Route::post('/tabel' ,'UploadController@uploadTabel')->middleware('auth')->name(
 
 Route::get('/contact-us' , 'ProductController@contactUs')->name('contactUs');
 Route::post('/contact-us' , 'ProductController@sendUs')->name('sendUs');
+
